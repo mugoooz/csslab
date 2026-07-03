@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cybersecurity Skills Hub | Register</title>
+  <link rel="stylesheet" href="csslab.css">
+</head>
+<body>
+
+  <header class="navbar">
+    <div class="container">
+      <div class="logo">CyberSkills<span>Hub</span></div>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="courses.html">Courses</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="register.html" class="active">Register</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <section class="page-hero">
+    <h1>Course Registration</h1>
+    <p>Reserve your place in the next intake. Fields marked
+      <span class="required">*</span> are required.</p>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="form-wrapper">
+        <form action="#" method="post">
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="fullname">Full name <span class="required">*</span></label>
+              <input type="text" id="fullname" name="fullname"
+                     placeholder="e.g. Jane Wanjiku" required>
+            </div>
+            <div class="form-group">
+              <label for="email">Email address <span class="required">*</span></label>
+              <input type="email" id="email" name="email"
+                     placeholder="you@example.com" required>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="phone">Phone number</label>
+              <input type="tel" id="phone" name="phone"
+                     placeholder="+254 7XX XXX XXX">
+            </div>
+            <div class="form-group">
+              <label for="start">Preferred start date</label>
+              <input type="date" id="start" name="start">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="course">Course <span class="required">*</span></label>
+            <select id="course" name="course" required>
+              <option value="">-- Select a course --</option>
+              <option value="network">Network Defence Fundamentals</option>
+              <option value="hacking">Ethical Hacking Bootcamp</option>
+              <option value="cloud">Azure Cloud Security &amp; Sentinel</option>
+              <option value="forensics">Digital Forensics Essentials</option>
+              <option value="secplus">Security+ Exam Prep Sprint</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <fieldset>
+              <legend>Experience level</legend>
+              <div class="choice-list">
+                <label><input type="radio" name="level" value="beginner" checked> Beginner</label>
+                <label><input type="radio" name="level" value="intermediate"> Intermediate</label>
+                <label><input type="radio" name="level" value="advanced"> Advanced</label>
+              </div>
+            </fieldset>
+          </div>
+
+          <div class="form-group">
+            <fieldset>
+              <legend>Areas of interest (choose any)</legend>
+              <div class="choice-list">
+                <label><input type="checkbox" name="interest" value="soc"> SOC / Blue team</label>
+                <label><input type="checkbox" name="interest" value="pentest"> Penetration testing</label>
+                <label><input type="checkbox" name="interest" value="cloud"> Cloud security</label>
+                <label><input type="checkbox" name="interest" value="grc"> GRC &amp; compliance</label>
+              </div>
+            </fieldset>
+          </div>
+
+          <div class="form-group">
+            <label for="message">Anything we should know?</label>
+            <textarea id="message" name="message"
+                      placeholder="Tell us about your goals or any questions you have..."></textarea>
+            <p class="form-hint">We reply within two working days.</p>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Submit registration</button>
+            <button type="reset" class="btn btn-reset">Clear form</button>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h4>CyberSkillsHub</h4>
+          <p>Practical cybersecurity training for the next generation of
+            defenders in East Africa.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Quick links</h4>
+          <ul>
+            <li><a href="courses.html">Courses</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="register.html">Register</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <ul>
+            <li>📍 Nairobi, Kenya</li>
+            <li>✉️ info@cyberskillshub.co.ke</li>
+            <li>📞 +254 700 000 000</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Cybersecurity Skills Hub · CSS Lab · Web Application Development</p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
