@@ -1,0 +1,718 @@
+/* ============================================================
+   CYBERSECURITY SKILLS HUB — csslab.css
+   Web Application Development: CSS Lab
+   Single external stylesheet linked from every HTML page.
+   ------------------------------------------------------------
+   Contents
+   1.  Google Fonts import + design tokens (CSS variables)
+   2.  Reset & base typography
+   3.  Navigation bar (Flexbox)
+   4.  Hero section
+   5.  Buttons
+   6.  Cards & section layout
+   7.  Form styling
+   8.  Gallery — CSS flip cards
+   9.  Tables
+   10. Footer
+   11. Utilities, transitions & animations
+   12. Responsive design (media queries)
+   ============================================================ */
+
+
+/* ---------- 1. FONTS & DESIGN TOKENS ---------- */
+
+/* Google Fonts: Space Grotesk (headings) + Inter (body text) */
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap');
+
+:root {
+  /* Colour palette — consistent across every page */
+  --ink:         #0e1626;   /* deep navy: nav, footer, headings   */
+  --ink-soft:    #1b2a44;   /* lighter navy: hover states         */
+  --surface:     #f4f7fb;   /* page background                    */
+  --card:        #ffffff;   /* card / form background             */
+  --accent:      #0891b2;   /* cyan: links, buttons, highlights   */
+  --accent-dark: #155e75;   /* cyan (dark): hover states          */
+  --amber:       #f59e0b;   /* warm highlight: badges, markers    */
+  --line:        #dce4ee;   /* borders and dividers               */
+  --text:        #24344d;   /* main body text                     */
+  --muted:       #5b6b85;   /* secondary text                     */
+
+  /* Type & spacing scale */
+  --font-display: 'Space Grotesk', sans-serif;
+  --font-body:    'Inter', system-ui, sans-serif;
+  --radius:       12px;
+  --shadow:       0 6px 18px rgba(14, 22, 38, 0.08);
+  --shadow-lift:  0 14px 30px rgba(14, 22, 38, 0.16);
+  --space:        1rem;
+}
+
+
+/* ---------- 2. RESET & BASE TYPOGRAPHY ---------- */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.65;
+  color: var(--text);
+  background-color: var(--surface);
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  color: var(--ink);
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+h1 { font-size: clamp(2rem, 4vw, 3rem); }
+h2 { font-size: clamp(1.5rem, 3vw, 2rem); margin-bottom: 0.75rem; }
+h3 { font-size: 1.2rem; margin-bottom: 0.5rem; }
+
+p {
+  margin-bottom: var(--space);
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: var(--accent-dark);
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* Visible keyboard focus for accessibility */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid var(--amber);
+  outline-offset: 2px;
+}
+
+/* Consistent page container */
+.container {
+  width: min(1100px, 92%);
+  margin: 0 auto;
+}
+
+/* Terminal-style section label — ties into the cybersecurity theme */
+.eyebrow {
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  display: block;
+  margin-bottom: 0.35rem;
+}
+
+.eyebrow::before {
+  content: "// ";
+  color: var(--amber);
+}
+
+
+/* ---------- 3. NAVIGATION BAR (FLEXBOX) ---------- */
+
+.navbar {
+  background-color: var(--ink);
+  border-bottom: 3px solid var(--accent);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.navbar .container {
+  display: flex;                   /* Flexbox layout as required */
+  justify-content: space-between;  /* logo left, links right     */
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+  padding: 0.9rem 0;
+}
+
+.logo {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.logo span {
+  color: var(--accent);
+}
+
+.nav-links {
+  display: flex;                   /* Flexbox for the link list */
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  list-style: none;
+}
+
+.nav-links a {
+  display: block;
+  padding: 0.5rem 0.9rem;
+  color: #cfd8e6;
+  font-weight: 500;
+  font-size: 0.95rem;
+  border-radius: 8px;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+.nav-links a:hover {
+  background-color: var(--ink-soft);
+  color: #ffffff;
+}
+
+/* Highlights the page the visitor is currently on */
+.nav-links a.active {
+  background-color: var(--accent);
+  color: #ffffff;
+}
+
+
+/* ---------- 4. HERO SECTION ---------- */
+
+.hero {
+  background:
+    linear-gradient(135deg, rgba(14, 22, 38, 0.92), rgba(21, 94, 117, 0.85)),
+    url('https://picsum.photos/seed/matrix/1400/600') center/cover no-repeat;
+  color: #ffffff;
+  text-align: center;
+  padding: 5.5rem 1rem;
+}
+
+.hero h1 {
+  color: #ffffff;
+  margin-bottom: 0.75rem;
+}
+
+.hero h1 span {
+  color: #67e8f9;
+}
+
+.hero p {
+  max-width: 620px;
+  margin: 0 auto 1.75rem;
+  color: #dbe6f2;
+  font-size: 1.08rem;
+}
+
+/* Smaller hero used on inner pages for consistency */
+.page-hero {
+  background-color: var(--ink);
+  color: #ffffff;
+  text-align: center;
+  padding: 3rem 1rem;
+  border-bottom: 3px solid var(--accent);
+}
+
+.page-hero h1 {
+  color: #ffffff;
+}
+
+.page-hero p {
+  color: #cfd8e6;
+  max-width: 600px;
+  margin: 0.5rem auto 0;
+}
+
+
+/* ---------- 5. BUTTONS ---------- */
+
+.btn {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 0.75rem 1.75rem;
+  border: 2px solid var(--accent);
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background-color 0.25s ease, color 0.25s ease,
+              transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-primary {
+  background-color: var(--accent);
+  color: #ffffff;
+}
+
+.btn-primary:hover {
+  background-color: var(--accent-dark);
+  border-color: var(--accent-dark);
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lift);
+}
+
+.btn-outline {
+  background-color: transparent;
+  color: #ffffff;
+}
+
+.btn-outline:hover {
+  background-color: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+.hero .btn + .btn {
+  margin-left: 0.75rem;
+}
+
+
+/* ---------- 6. CARDS & SECTION LAYOUT ---------- */
+
+.section {
+  padding: 4rem 0;
+}
+
+.section-alt {
+  background-color: #eaf0f7;
+}
+
+.section-intro {
+  max-width: 640px;
+  margin-bottom: 2.25rem;
+}
+
+/* Responsive card grid used on the home and about pages */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+}
+
+.card {
+  background-color: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 1.75rem;
+  box-shadow: var(--shadow);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lift);
+}
+
+.card .icon {
+  font-size: 1.9rem;
+  display: inline-block;
+  margin-bottom: 0.75rem;
+}
+
+.card ul {
+  padding-left: 1.2rem;
+  color: var(--muted);
+}
+
+.badge {
+  display: inline-block;
+  background-color: #fef3c7;
+  color: #92400e;
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 0.2rem 0.7rem;
+  border-radius: 999px;
+  margin-bottom: 0.75rem;
+}
+
+
+/* ---------- 7. FORM STYLING ---------- */
+
+.form-wrapper {
+  max-width: 680px;
+  margin: 0 auto;
+  background-color: var(--card);
+  border: 1px solid var(--line);
+  border-top: 5px solid var(--accent);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 2.5rem;
+}
+
+.form-group {
+  margin-bottom: 1.4rem;
+}
+
+/* Two fields side by side on wider screens */
+.form-row {
+  display: flex;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.form-row .form-group {
+  flex: 1 1 240px;
+}
+
+label {
+  display: block;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 0.4rem;
+  font-size: 0.95rem;
+}
+
+.required {
+  color: #dc2626;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="date"],
+select,
+textarea {
+  width: 100%;
+  padding: 0.75rem 0.9rem;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--text);
+  background-color: #fbfdff;
+  border: 1.5px solid var(--line);
+  border-radius: 8px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(8, 145, 178, 0.15);
+  outline: none;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+/* Radio buttons & checkboxes laid out with Flexbox */
+fieldset {
+  border: 1.5px solid var(--line);
+  border-radius: 8px;
+  padding: 1rem 1.25rem;
+}
+
+legend {
+  font-weight: 600;
+  color: var(--ink);
+  padding: 0 0.5rem;
+  font-size: 0.95rem;
+}
+
+.choice-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem 1.75rem;
+}
+
+.choice-list label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 400;
+  margin-bottom: 0;
+  cursor: pointer;
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+  accent-color: var(--accent);
+  width: 1.05rem;
+  height: 1.05rem;
+}
+
+.form-hint {
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin-top: 0.3rem;
+  margin-bottom: 0;
+}
+
+.form-actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 1.75rem;
+}
+
+.btn-reset {
+  background-color: transparent;
+  color: var(--accent);
+}
+
+.btn-reset:hover {
+  background-color: #e0f2fe;
+}
+
+
+/* ---------- 8. GALLERY — CSS FLIP CARDS ---------- */
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.75rem;
+}
+
+/* Outer card provides 3D perspective for the flip */
+.flip-card {
+  background-color: transparent;
+  height: 340px;
+  perspective: 1000px;
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.7s ease;
+  transform-style: preserve-3d;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+/* The flip happens on hover (and keyboard focus) */
+.flip-card:hover .flip-card-inner,
+.flip-card:focus-within .flip-card-inner {
+  transform: rotateY(180deg);
+  box-shadow: var(--shadow-lift);
+}
+
+.flip-card-front,
+.flip-card-back {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+/* Front: image with a caption strip along the bottom */
+.flip-card-front img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.flip-card-front figcaption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(transparent, rgba(14, 22, 38, 0.92));
+  color: #ffffff;
+  font-family: var(--font-display);
+  font-weight: 600;
+  padding: 2rem 1.25rem 1rem;
+}
+
+/* Back: description revealed on hover */
+.flip-card-back {
+  background: linear-gradient(150deg, var(--ink), var(--accent-dark));
+  color: #e6f2f8;
+  transform: rotateY(180deg);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 1.75rem;
+}
+
+.flip-card-back h3 {
+  color: #ffffff;
+  margin-bottom: 0.6rem;
+}
+
+.flip-card-back p {
+  font-size: 0.95rem;
+  margin-bottom: 1.25rem;
+}
+
+.flip-card-back .btn {
+  padding: 0.5rem 1.4rem;
+  font-size: 0.9rem;
+}
+
+
+/* ---------- 9. TABLES ---------- */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: var(--card);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+th, td {
+  padding: 0.9rem 1.1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--line);
+}
+
+th {
+  background-color: var(--ink);
+  color: #ffffff;
+  font-family: var(--font-display);
+  font-weight: 600;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #f0f5fa;
+}
+
+tbody tr:hover {
+  background-color: #e0f2fe;
+}
+
+
+/* ---------- 10. FOOTER ---------- */
+
+.footer {
+  background-color: var(--ink);
+  color: #cfd8e6;
+  margin-top: 4rem;
+  border-top: 3px solid var(--accent);
+}
+
+.footer-grid {
+  display: flex;              /* Flexbox footer columns */
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: space-between;
+  padding: 3rem 0 2rem;
+}
+
+.footer-col {
+  flex: 1 1 220px;
+}
+
+.footer-col h4 {
+  color: #ffffff;
+  margin-bottom: 0.75rem;
+}
+
+.footer-col ul {
+  list-style: none;
+}
+
+.footer-col li {
+  margin-bottom: 0.45rem;
+}
+
+.footer-col a {
+  color: #cfd8e6;
+}
+
+.footer-col a:hover {
+  color: #67e8f9;
+}
+
+.footer-bottom {
+  border-top: 1px solid var(--ink-soft);
+  text-align: center;
+  padding: 1.1rem 0;
+  font-size: 0.88rem;
+}
+
+.footer-bottom p {
+  margin: 0;
+}
+
+
+/* ---------- 11. UTILITIES, TRANSITIONS & ANIMATIONS ---------- */
+
+.text-center { text-align: center; }
+.mt-2 { margin-top: 2rem; }
+
+/* Gentle fade-up animation used on hero content */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.fade-up {
+  animation: fadeUp 0.8s ease both;
+}
+
+.fade-up-delay {
+  animation: fadeUp 0.8s ease 0.25s both;
+}
+
+/* Respect visitors who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+
+/* ---------- 12. RESPONSIVE DESIGN ---------- */
+
+@media (max-width: 768px) {
+  .navbar .container {
+    flex-direction: column;    /* stack logo above links */
+    padding: 0.85rem 0;
+  }
+
+  .nav-links {
+    justify-content: center;
+  }
+
+  .hero {
+    padding: 3.5rem 1rem;
+  }
+
+  .hero .btn + .btn {
+    margin-left: 0;
+    margin-top: 0.75rem;
+  }
+
+  .section {
+    padding: 2.75rem 0;
+  }
+
+  .form-wrapper {
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .btn {
+    width: 100%;
+    text-align: center;
+  }
+
+  .form-actions .btn {
+    width: auto;
+    flex: 1;
+  }
+}
